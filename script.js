@@ -1,8 +1,9 @@
 const API= "https://fakestoreapi.com/products";
 
-fetch("https://fakestoreapi.com/products")
+fetch(API)
   .then(response => response.json())
   .then(data => {
+    console.log(data);
     data.forEach(product => {
         const template = `<div class="grid-item" data-product-type="Notebook">
         <div class="prod-img"> <img src=${product.image} alt=""></div>
