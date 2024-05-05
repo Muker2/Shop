@@ -5,7 +5,7 @@ fetch("https://fakestoreapi.com/products")
   .then(data => {
     data.forEach(product => {
         const template = `<div class="grid-item" data-product-type="Notebook">
-        <img src="images/Laptop.jpg" alt="">
+        <div class="prod-img"> <img src=${product.image} alt=""></div>
         <div class="grid-item-info">
             <div class="grid-item-header">
                 <h2>${product.title}</h2>
@@ -15,7 +15,7 @@ fetch("https://fakestoreapi.com/products")
             </div>
         </div>
         <div class="grid-price">
-            <p>${product.price}</p>
+            <p>${product.price}€</p>
             <span>inkl. Mwst.</span>
             <button>Add to Cart</button>
         </div>
