@@ -1,27 +1,33 @@
-const filter = Array.from(document.getElementsByClassName("filter"));
-const product = Array.from(document.querySelectorAll(".grid-item"));
+const API= "https://fakestoreapi.com/products";
 
-product.forEach(prod =>
-    prod.style.display =""
-);
+fetch("https://fakestoreapi.com/products")
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(product => {
+        const template = `<div class="grid-item" data-product-type="Notebook">
+        <img src="images/Laptop.jpg" alt="">
+        <div class="grid-item-info">
+            <div class="grid-item-header">
+                <h2>${product.title}</h2>
+            </div>
+            <div class="grid-item-desc">
+                <p>${product.description}</p>   
+            </div>
+        </div>
+        <div class="grid-price">
+            <p>${product.price}</p>
+            <span>inkl. Mwst.</span>
+            <button>Add to Cart</button>
+        </div>
+    </div>`;
+        document.querySelector(".grid").insertAdjacentHTML("beforeend", template);
 
-/*filter.forEach(item => 
-    item.addEventListener("change", function(){
-        if(item.checked){
-            product.forEach(prod => {
-                if(item.parentElement.textContent.trim().toLowerCase() !== prod.dataset.productType.trim().toLowerCase()){
-                    prod.style.display = "none";
-                } else {
-                    prod.style.display = "";
-                }
-            });
-        }else{
-            product.forEach(prod =>
-                prod.style.display =""
-            );
-        }
-    })
-);*/
+    });
+  })
+  .catch(error => console.error('Error:', error));
+
+
+
 
 
 
