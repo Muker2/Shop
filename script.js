@@ -5,7 +5,7 @@ product.forEach(prod =>
     prod.style.display =""
 );
 
-filter.forEach(item => 
+/*filter.forEach(item => 
     item.addEventListener("change", function(){
         if(item.checked){
             product.forEach(prod => {
@@ -21,7 +21,7 @@ filter.forEach(item =>
             );
         }
     })
-);
+);*/
 
 
 
