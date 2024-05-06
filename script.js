@@ -1,12 +1,13 @@
-const API= "https://fakestoreapi.com/products";
+const API= "https://dummyjson.com/products?skip=0&limit=10";
 
 fetch(API)
   .then(response => response.json())
   .then(data => {
     console.log(data);
-    data.forEach(product => {
+    const products = data.products || [];
+    products.forEach(product => {
         const template = `<div class="grid-item" data-product-type="Notebook">
-        <div class="prod-img"> <img src=${product.image} alt=""></div>
+        <div class="prod-img"> <img src=${product.thumbnail} alt=""></div>
         <div class="grid-item-info">
             <div class="grid-item-header">
                 <h2>${product.title}</h2>
