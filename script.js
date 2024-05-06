@@ -11,9 +11,6 @@ fetch(API)
             <div class="grid-item-header">
                 <h2>${product.title}</h2>
             </div>
-            <div class="grid-item-desc">
-                <p>${product.description}</p>   
-            </div>
         </div>
         <div class="grid-price">
             <p>${product.price}€</p>
