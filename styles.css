@@ -57,7 +57,7 @@ nav ul{
     width: 100%;
     height: 2rem;
     border: 1px solid gray;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 
@@ -66,8 +66,6 @@ nav ul{
     width: 128px;
     background-color: blue;
 }
-
-
 
 .shop{
     display: flex;
@@ -78,88 +76,97 @@ nav ul{
 
 .grid{
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    flex-grow: 1.5;
-    gap: 10px;
+    flex-grow: 1;
     width: 60%;
+    row-gap: 10px;
 }
 
 .grid-item{
     display: flex;
+    background-color: #0598ce;
     flex-direction: column;
-    width: 30%;
-}
-
-.grid-item-desc{
-    width: 70%;
-}
-
-.grid-item-header h2{
-    width: 100%;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    width: 24%;
+    border: 2px solid  #D3D3D3;
+    border-radius: 5px;
 }
 
 .grid-item-info{
     display: flex;
+    align-items: center;
     width: 100%;
     flex-wrap: wrap;
-    color: black;
+    color: white;
 }
 
 .grid-item-header{
     width: 100%;
 }
 
+.grid-item-header h2{
+    width: 100%;
+    margin: 20px 0 5px 0;
+    text-align: center;
+}
+
+.grid-item-header .rating{
+    text-align: center;
+}
+
 .grid-item-desc p{
-    font-size: 0.6rem;
+    font-size: 0.825rem;
+    text-align: center;
+    margin: 5px 0 5px 0;
 }
 
 .grid-item h2{
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 .grid-price{
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    align-items: center;
     flex-grow: 1;
 }
 
 .grid-price button{
     width: 50%;
     height: 30px;
-    background-color:  	#113768;
-    color: white;
+    background-color:white;
+    color: #0598ce;
     font-weight: 500;
-    border-style: none;
-    border-radius: 5px;
-}
+    border: 1px solid white;
+    border-radius: 10px;;
+    margin: 5px 0 5px 0;
+    }
 
 .grid-price p{
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 500;
     margin: 0.2rem;
-}
-
-.grid-price span, .grid-price button{
-    margin: 0.2rem;
+    color: white;
+    text-align: center;
 }
 
 .grid-price span{
     font-size: 0.7rem;
     color: #0598ce;
+    text-align: center;
 }
 
 .prod-img{
-    height: 100%;
     width: 100%;
+    margin: auto;
 }
 
 .prod-img img{
     width: 100%;
     height: 100%;
     object-fit: fill;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 
