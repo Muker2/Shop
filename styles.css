@@ -76,11 +76,10 @@ nav ul{
 
 .grid{
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     flex-grow: 1;
     width: 60%;
-    row-gap: 10px;
+    gap: 10px;
 }
 
 .grid-item{
@@ -106,17 +105,22 @@ nav ul{
 
 .grid-item-header h2{
     width: 100%;
-    margin: 20px 0 5px 0;
+    margin: 10px 0 10px 0;
     text-align: center;
+
 }
 
 .grid-item-header .rating{
     text-align: center;
 }
 
+.grid-item-desc{
+    padding: 5px;
+    text-align: left;
+}
+
 .grid-item-desc p{
     font-size: 0.825rem;
-    text-align: center;
     margin: 5px 0 5px 0;
 }
 
