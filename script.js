@@ -3,14 +3,23 @@ const desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleme
 const shoppingList = document.querySelector(".cart");
 const shoppingItems = [];
 const cartBtn = document.querySelectorAll(".add");
+const grid = document.querySelector("#grid");
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.body.addEventListener('click', function(event) {
-        if (event.target.classList.contains('add')) {
-            alert('hello');
-        }
-    });
-});
+function addItem(event){
+    const cart = document.querySelector("#cart");
+    const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
+    const cartItem = document.createElement("li");
+    cartItem.textContent = productItem;
+    cart.appendChild(cartItem);
+}
+
+grid.addEventListener("click", (event) => {
+    if(event.target.tagName === "BUTTON"){
+        addItem(event);
+    }
+}
+);
+
 
 
 fetch('https://dummyjson.com/auth/refresh', {
@@ -45,19 +54,19 @@ function displayProducts(){
         <div class="prod-img"> <img src=${pic} alt=""></div>
         <div class="grid-item-info">
             <div class="grid-item-header">
-                <h2>${product.title}</h2>
+                <h2 data-title="${product.title}">${product.title}</h2>
             </div>
             <div class="grid-item-desc">
             <p>${desc}</p>
             </div>
         </div>
         <div class="grid-price">
-            <p>${product.price}€</p>
+            <p data-price="${product.price}">${product.price}€</p>
             <button class="add">Add to Cart</button>
         </div>
     </div>`;
 
-            document.querySelector(".grid").insertAdjacentHTML("beforeend", template);
+            document.querySelector("#grid").insertAdjacentHTML("beforeend", template);
             
     });
 });
