@@ -5,7 +5,7 @@ const shoppingItems = [];
 const cartBtn = document.querySelectorAll(".add");
 const grid = document.querySelector("#grid");
 
-function addItem(event){
+function addItem(event) {
     const cart = document.querySelector("#cart");
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
     const cartItem = document.createElement("li");
@@ -14,7 +14,7 @@ function addItem(event){
 }
 
 grid.addEventListener("click", (event) => {
-    if(event.target.tagName === "BUTTON"){
+    if (event.target.tagName === "BUTTON") {
         addItem(event);
     }
 }
@@ -23,23 +23,23 @@ grid.addEventListener("click", (event) => {
 
 
 fetch('https://dummyjson.com/auth/refresh', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer /* YOUR_TOKEN_HERE */', 
-  },
-  body: JSON.stringify({
-    expiresInMins: 30, // optional, defaults to 60
-  })
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer /* YOUR_TOKEN_HERE */',
+    },
+    body: JSON.stringify({
+        expiresInMins: 30, // optional, defaults to 60
+    })
 })
-.then(res => res.json())
-.then(console.log);
+    .then(res => res.json())
+    .then(console.log);
 
-function fetchData(){
+function fetchData() {
     const API = "https://dummyjson.com/products?skip=0&limit=10";
-    return fetch(API).then(response =>{
-        if(!response.ok){
-            throw new Error ("Could not load data");
+    return fetch(API).then(response => {
+        if (!response.ok) {
+            throw new Error("Could not load data");
         }
         else {
             return response.json()
@@ -47,7 +47,7 @@ function fetchData(){
     }).then(data => data.products || [])
 }
 
-function displayProducts(){
+function displayProducts() {
     fetchData().then(items => {
         items.forEach(product => {
             const template = `<div class="grid-item" data-product-type="Notebook">
@@ -62,14 +62,23 @@ function displayProducts(){
         </div>
         <div class="grid-price">
             <p data-price="${product.price}">${product.price}€</p>
-            <button class="add">Add to Cart</button>
+            <div id="grid-checkout">
+                <button class="add">Add to Cart</button>
+                <div id="grid-counter">
+                    <p>1<p>
+                    <div id="grid-counter-btn">
+                        <button id="increment">+</button>
+                        <button id="decrement">-</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>`;
 
             document.querySelector("#grid").insertAdjacentHTML("beforeend", template);
-            
+
+        });
     });
-});
 }
 
 displayProducts();

@@ -21,7 +21,7 @@ header{
     display: flex;
     flex-wrap: wrap;
     height: 100px;
-    background-color: #0598ce;
+    color: black;
 }
 
 header h1{
@@ -57,7 +57,7 @@ nav ul{
     width: 100%;
     height: 2rem;
     border: 1px solid gray;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 
@@ -84,7 +84,7 @@ nav ul{
 
 .grid-item{
     display: flex;
-    background-color: #0598ce;
+    background-color: #f0f0f0;
     flex-direction: column;
     width: 24%;
     border: 2px solid  #D3D3D3;
@@ -96,7 +96,7 @@ nav ul{
     align-items: center;
     width: 100%;
     flex-wrap: wrap;
-    color: white;
+    color: black;
 }
 
 .grid-item-header{
@@ -150,7 +150,7 @@ nav ul{
     font-size: 1.2rem;
     font-weight: 500;
     margin: 0.2rem;
-    color: white;
+    color: black;
     text-align: center;
 }
 
@@ -158,6 +158,26 @@ nav ul{
     font-size: 0.7rem;
     color: #0598ce;
     text-align: center;
+}
+
+#grid-checkout{
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+    width: 80%;
+}
+
+#grid-counter{
+    display: flex;
+    align-items: center;
+}
+
+#grid-counter-btn{
+    display: flex;
+}
+
+#grid-counter-btn button{
+    border-radius: 0;
 }
 
 .prod-img{
