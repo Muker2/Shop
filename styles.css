@@ -22,6 +22,8 @@ header{
     flex-wrap: wrap;
     height: 100px;
     color: black;
+    box-shadow: 0px 0px 6px #888888;
+
 }
 
 header h1{
@@ -125,7 +127,7 @@ nav ul{
 }
 
 .grid-item h2{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 
 .grid-price{
