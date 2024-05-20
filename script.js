@@ -4,6 +4,34 @@ const shoppingList = document.querySelector(".cart");
 const shoppingItems = [];
 const cartBtn = document.querySelectorAll(".add");
 const grid = document.querySelector("#grid");
+const counter = document.querySelectorAll(".countBtn");
+let qty = 0;
+
+function count(event){
+
+    const qtyField = event.target.closest("#grid-counter").querySelector("#grid-counter-qty");
+
+    if (event.target.textContent === "+"){
+        qty++;
+        
+    }else if (event.target.textContent === "-"){
+        qty--;
+    }
+    if (qty < 0) qty = 0;
+
+    qtyField.textContent  = qty;
+}
+
+grid.addEventListener("click", (event) => {
+    if (event.target.tagName === "BUTTON") {
+        if (event.target.classList.contains("countBtn")) {
+            count(event);
+        } else if (event.target.classList.contains("add")) {
+            addItem(event);
+        }
+    }
+});
+
 
 function addItem(event) {
     const cart = document.querySelector("#cart");
@@ -12,15 +40,6 @@ function addItem(event) {
     cartItem.textContent = productItem;
     cart.appendChild(cartItem);
 }
-
-grid.addEventListener("click", (event) => {
-    if (event.target.tagName === "BUTTON") {
-        addItem(event);
-    }
-}
-);
-
-
 
 fetch('https://dummyjson.com/auth/refresh', {
     method: 'POST',
@@ -65,10 +84,10 @@ function displayProducts() {
             <div id="grid-checkout">
                 <button class="add">Add to Cart</button>
                 <div id="grid-counter">
-                    <p>1<p>
+                    <p id="grid-counter-qty">0<p>
                     <div id="grid-counter-btn">
-                        <button id="increment">+</button>
-                        <button id="decrement">-</button>
+                        <button class="countBtn">+</button>
+                        <button class="countBtn">-</button>
                     </div>
                 </div>
             </div>
