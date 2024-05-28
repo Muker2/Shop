@@ -12,7 +12,7 @@ body{
 
 .content{
     display: flex;
-    flex-direction: column;
+    justify-content: flex-end;
     gap:20px;
     margin: auto;
 }
@@ -71,7 +71,7 @@ nav ul{
 
 .shop{
     display: flex;
-    width: 70%;
+    width: 80%;
     gap: 10px;
     margin: auto;
 }
@@ -180,6 +180,11 @@ nav ul{
 
 #grid-counter-btn button{
     border-radius: 0;
+}
+
+#cart-bar{
+    width: 30%;
+    background-color: red;
 }
 
 .prod-img{

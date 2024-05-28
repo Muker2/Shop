@@ -34,7 +34,7 @@ grid.addEventListener("click", (event) => {
 
 
 function addItem(event) {
-    const cart = document.querySelector("#cart");
+    const cart = document.querySelector("#cartList");
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
     const cartItem = document.createElement("li");
     cartItem.textContent = productItem;
