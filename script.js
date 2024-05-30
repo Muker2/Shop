@@ -36,9 +36,14 @@ grid.addEventListener("click", (event) => {
 function addItem(event) {
     const cart = document.querySelector("#cartList");
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
+    const productContainer = document.createElement("div");
+    productContainer.className="productContainer";
     const cartItem = document.createElement("li");
     cartItem.textContent = productItem;
-    cart.appendChild(cartItem);
+    productContainer.append(cartItem);
+    const removeBtn = document.createElement("button");
+    productContainer.append(removeBtn);
+    cart.appendChild(productContainer);
 }
 
 fetch('https://dummyjson.com/auth/refresh', {
