@@ -18,7 +18,7 @@ function count(event){
     }else if (event.target.textContent === "-"){
         qty--;
     }
-    if (qty < 0) qty = 0;
+    if (qty <= 0) qty = 1;
 
     qtyField.textContent  = qty;
 }
