@@ -6,7 +6,7 @@ const cartBtn = document.querySelectorAll(".add");
 const grid = document.querySelector("#grid");
 const counter = document.querySelectorAll(".countBtn");
 const cart = document.querySelector("#cartList");
-var qty = 0;
+var qty = 1;
 
 function count(event){
 
@@ -100,7 +100,7 @@ function displayProducts() {
             <div id="grid-checkout">
                 <button class="add">Add to Cart</button>
                 <div id="grid-counter">
-                    <p id="grid-counter-qty">0<p>
+                    <p id="grid-counter-qty">1<p>
                     <div id="grid-counter-btn">
                         <button class="countBtn">+</button>
                         <button class="countBtn">-</button>
