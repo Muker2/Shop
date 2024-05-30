@@ -6,6 +6,7 @@ const cartBtn = document.querySelectorAll(".add");
 const grid = document.querySelector("#grid");
 const counter = document.querySelectorAll(".countBtn");
 const cart = document.querySelector("#cartList");
+const cartList = [];
 var qty = 1;
 
 function count(event){
@@ -41,6 +42,9 @@ function addItem(event) {
     const removeBtn = document.createElement("button");
     const productCount = document.createElement("p");
 
+    cartList.push(productItem);
+    console.log(cartList);
+
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
     productCount.textContent = qty;
@@ -49,6 +53,7 @@ function addItem(event) {
     productContainer.append(cartItem);
     productContainer.append(productCount);  
     productContainer.append(removeBtn);
+
     cart.appendChild(productContainer);
 }
 
