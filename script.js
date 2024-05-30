@@ -5,6 +5,7 @@ const shoppingItems = [];
 const cartBtn = document.querySelectorAll(".add");
 const grid = document.querySelector("#grid");
 const counter = document.querySelectorAll(".countBtn");
+const cart = document.querySelector("#cartList");
 let qty = 0;
 
 function count(event){
@@ -34,7 +35,6 @@ grid.addEventListener("click", (event) => {
 
 
 function addItem(event) {
-    const cart = document.querySelector("#cartList");
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
     const productContainer = document.createElement("div");
     productContainer.className="productContainer";
@@ -42,8 +42,14 @@ function addItem(event) {
     cartItem.textContent = productItem;
     productContainer.append(cartItem);
     const removeBtn = document.createElement("button");
+    removeBtn.addEventListener("click", removeItem);
     productContainer.append(removeBtn);
     cart.appendChild(productContainer);
+}
+
+function removeItem(event){
+    const item = event.target.parentElement;
+    cart.removeChild(item);
 }
 
 fetch('https://dummyjson.com/auth/refresh', {
