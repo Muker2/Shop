@@ -37,21 +37,25 @@ grid.addEventListener("click", (event) => {
 
 function addItem(event) {
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
+    const prize = event.target.closest(".grid-item").querySelector('[data-price]').dataset.price;
     const productContainer = document.createElement("div");
     const cartItem = document.createElement("li");
     const removeBtn = document.createElement("button");
     const productCount = document.createElement("p");
+    const productPrize = document.createElement("p");
 
     cartList.push(productItem);
-    console.log(cartList);
+    console.log(productPrize);
 
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
     productCount.textContent = qty;
+    productPrize.textContent = prize;
     removeBtn.addEventListener("click", removeItem);
 
     productContainer.append(cartItem);
-    productContainer.append(productCount);  
+    productContainer.append(productCount);
+    productContainer.append(productPrize);
     productContainer.append(removeBtn);
 
     cart.appendChild(productContainer);
