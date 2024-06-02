@@ -184,7 +184,8 @@ nav ul{
 
 #cart-bar{
     width: 30%;
-    background-color: red;
+    background-color: white;
+    color: black;
 }
 
 #cartList{
@@ -220,10 +221,6 @@ li{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.productContainer button{
-    height: 100%; 
 }
 
 .footer{

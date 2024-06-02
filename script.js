@@ -50,7 +50,7 @@ function addItem(event) {
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
     productCount.textContent = qty;
-    productPrize.textContent = prize * productCount.textContent;
+    productPrize.textContent = Math.round((prize * productCount.textContent) * 1000) /1000;
     removeBtn.addEventListener("click", removeItem);
 
     productContainer.append(cartItem);
