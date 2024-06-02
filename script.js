@@ -10,9 +10,10 @@ const cartList = [];
 var qty = 1;
 
 function count(event){
-
+    //Get Quantityfield of corresponding Product
     const qtyField = event.target.closest("#grid-counter").querySelector("#grid-counter-qty");
 
+    //Increment/Decrement Quantity
     if (event.target.textContent === "+"){
         qty++;
         
@@ -21,6 +22,7 @@ function count(event){
     }
     if (qty <= 0) qty = 1;
 
+    //Update Quantityfield
     qtyField.textContent  = qty;
 }
 
@@ -71,6 +73,7 @@ function removeItem(event){
     cart.removeChild(item);
 }
 
+//Fetch request
 fetch('https://dummyjson.com/auth/refresh', {
     method: 'POST',
     headers: {
@@ -84,6 +87,8 @@ fetch('https://dummyjson.com/auth/refresh', {
     .then(res => res.json())
     .then(console.log);
 
+    
+//Fetch 10 products from API
 function fetchData() {
     const API = "https://dummyjson.com/products?skip=0&limit=10";
     return fetch(API).then(response => {
@@ -96,6 +101,8 @@ function fetchData() {
     }).then(data => data.products || [])
 }
 
+
+//Display product list from API
 function displayProducts() {
     fetchData().then(items => {
         items.forEach(product => {
@@ -114,9 +121,9 @@ function displayProducts() {
             <div id="grid-checkout">
                 <button class="add">Add to Cart</button>
                 <div id="grid-counter">
-                    <p id="grid-counter-qty">1<p>
                     <div id="grid-counter-btn">
                         <button class="countBtn">+</button>
+                        <p id="grid-counter-qty">1<p>
                         <button class="countBtn">-</button>
                     </div>
                 </div>
