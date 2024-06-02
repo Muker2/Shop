@@ -37,7 +37,7 @@ grid.addEventListener("click", (event) => {
 
 function addItem(event) {
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
-    const prize = event.target.closest(".grid-item").querySelector('[data-price]').dataset.price;
+    const price = event.target.closest(".grid-item").querySelector('[data-price]').dataset.price;
     const productContainer = document.createElement("div");
     const cartItem = document.createElement("li");
     const removeBtn = document.createElement("button");
@@ -47,12 +47,17 @@ function addItem(event) {
     cartList.push(productItem);
     console.log(productPrize);
 
+    //Set content for elements
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
     productCount.textContent = qty;
-    productPrize.textContent = Math.round((prize * productCount.textContent) * 1000) /1000;
-    removeBtn.addEventListener("click", removeItem);
+    productPrize.textContent = (price * qty).toFixed(2) + "€";
 
+    //Button
+    removeBtn.addEventListener("click", removeItem);
+    removeBtn.textContent = "-";
+
+    //Append elements
     productContainer.append(cartItem);
     productContainer.append(productCount);
     productContainer.append(productPrize);

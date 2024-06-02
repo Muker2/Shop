@@ -144,7 +144,7 @@ nav ul{
     color: #0598ce;
     font-weight: 500;
     border: 1px solid white;
-    border-radius: 10px;;
+    border-radius: 5px;
     margin: 5px 0 5px 0;
     }
 
@@ -190,6 +190,15 @@ nav ul{
 
 #cartList{
   list-style: none;  
+}
+
+#cartBtn{
+    width: 70%;
+    height: 50px;
+    background-color: white;
+    color: #0598ce;
+    border: 1px solid #0598ce;
+    border-radius: 5px;
 }
 
 .prod-img{
@@ -241,7 +250,4 @@ li{
     font-size: 1rem;
 }
 
-#cart{
-    color: black;
-}
 
