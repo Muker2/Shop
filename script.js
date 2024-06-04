@@ -54,7 +54,7 @@ function addItem(event) {
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
     productCount.innerHTML = qty;
-    productPrize.innerHTML = (price * qty).toFixed(2);
+    productPrize.innerHTML = price * qty;
 
     //Button
     removeBtn.addEventListener("click", removeItem);
@@ -68,13 +68,20 @@ function addItem(event) {
 
     cart.appendChild(productContainer);
 
-    totalCost += parseInt(productPrize.innerHTML);
+    totalCost += toNumber(productPrize.innerHTML)
     console.log(totalCost);
 }
 
 function removeItem(event){
     const item = event.target.parentElement;
     cart.removeChild(item);
+}
+
+//Convert string to Floats for innerHTML in the addItem function
+function toNumber(string){
+    const priceNumber = parseFloat(string);
+    const newPriceNumber = Math.round(priceNumber * 100) / 100;
+    return newPriceNumber;
 }
 
 //Fetch request
