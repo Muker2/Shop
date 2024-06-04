@@ -7,7 +7,8 @@ const grid = document.querySelector("#grid");
 const counter = document.querySelectorAll(".countBtn");
 const cart = document.querySelector("#cartList");
 const cartList = [];
-var qty = 1;
+let qty = 1;
+let totalCost = 0;
 
 function count(event){
     //Get Quantityfield of corresponding Product
@@ -52,8 +53,8 @@ function addItem(event) {
     //Set content for elements
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
-    productCount.textContent = qty;
-    productPrize.textContent = (price * qty).toFixed(2) + "€";
+    productCount.innerHTML = qty;
+    productPrize.innerHTML = (price * qty).toFixed(2);
 
     //Button
     removeBtn.addEventListener("click", removeItem);
@@ -66,6 +67,9 @@ function addItem(event) {
     productContainer.append(removeBtn);
 
     cart.appendChild(productContainer);
+
+    totalCost += parseInt(productPrize.innerHTML);
+    console.log(totalCost);
 }
 
 function removeItem(event){
