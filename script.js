@@ -68,8 +68,15 @@ function addItem(event) {
 
     cart.appendChild(productContainer);
 
-    totalCost += toNumber(productPrize.innerHTML)
+    totalCost += toNumber(productPrize.innerHTML);
     console.log(totalCost);
+
+    updateTotal(totalCost);
+
+}
+
+function updateTotal(price){
+    document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price + "€";
 }
 
 function removeItem(event){
@@ -77,11 +84,9 @@ function removeItem(event){
     cart.removeChild(item);
 }
 
-//Convert string to Floats for innerHTML in the addItem function
+//Convert string to Floats with two decimals for innerHTML in the addItem function
 function toNumber(string){
-    const priceNumber = parseFloat(string);
-    const newPriceNumber = Math.round(priceNumber * 100) / 100;
-    return newPriceNumber;
+    return Math.round(string * 100) / 100
 }
 
 //Fetch request
