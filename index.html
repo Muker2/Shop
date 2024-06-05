@@ -3,6 +3,7 @@
 
 <head>
     <title>Title of the document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,9 +39,10 @@
                 <input class="search-bar" type="text"  placeholder="Search..">
             </div>
             <div id="cart-bar">
-                <ul id="cartList">
-                </ul>
-                <div id="shopTotal">
+                <div id="cartTotal">
+                    <h1>Your Order</h1>
+                    <ul id="cartList">
+                    </ul>
                     <h2 id="totalPrice">Your total:</h2>
                     <button id="cartBtn">Buy Items</button>
                 </div>

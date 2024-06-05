@@ -71,9 +71,8 @@ nav ul{
 
 .shop{
     display: flex;
-    width: 80%;
     gap: 10px;
-    margin: auto;
+    width: 80%;
 }
 
 #grid{
@@ -184,14 +183,30 @@ nav ul{
 
 #cart-bar{
     width: 30%;
+    height: 100%;
     background-color: white;
     color: black;
 }
 
-#cartList{
-  list-style: none;  
+#cartTotal{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: inherit;
 }
 
+#cartList{
+  list-style: none; 
+  height: 300px;
+  padding: 0;
+  overflow-y:scroll;
+}
+
+
+#cartItems{
+    height: 50px;
+    background-color: red;
+}
 #cartBtn{
     width: 70%;
     height: 50px;
@@ -230,6 +245,7 @@ li{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 60%;
 }
 
 .footer{
