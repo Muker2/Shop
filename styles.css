@@ -192,10 +192,8 @@ nav ul{
     position: sticky;
     display: flex;
     flex-direction: column;
-    width: inherit;
-    border: 1px solid red;
+    width: 100%;
     top: 0;
-    right: 0;
 }
 
 #cartList{
@@ -205,11 +203,6 @@ nav ul{
   overflow-y:auto;
 }
 
-
-#cartItems{
-    height: 50px;
-    background-color: red;
-}
 #cartBtn{
     width: 70%;
     height: 50px;

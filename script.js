@@ -58,7 +58,7 @@ function addItem(event) {
 
     //Button
     removeBtn.addEventListener("click", removeItem);
-    removeBtn.textContent = "-";
+    removeBtn.textContent = "X";
 
     //Append elements
     productContainer.append(cartItem);
@@ -75,10 +75,12 @@ function addItem(event) {
 
 }
 
+//Update the Total Cost field in the Shopping Cart
 function updateTotal(price){
     document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price + "€";
 }
 
+//Remove Item from Shopping Cart
 function removeItem(event){
     const item = event.target.parentElement;
     cart.removeChild(item);
