@@ -216,6 +216,11 @@ nav ul{
     border-radius: 5px;
 }
 
+#cartBtn:hover{
+    background-color: #0598ce;
+    color: white;
+}
+
 .prod-img{
     width: 100%;
     margin: auto;
