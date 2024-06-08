@@ -33,7 +33,7 @@ header h1{
 
 .header-input{
     margin: auto;
-    width: 70%;
+    width: 80%;
 }
 
 nav{
@@ -48,6 +48,14 @@ nav ul{
     justify-content: space-between;
     flex-grow: 0.5;
     list-style-type: none;
+}
+
+#banner{
+    height: 100px;
+    width: 80%;
+    margin: auto;
+    background-color: orange;
+    color: black
 }
 
 .profile-btn{
@@ -72,6 +80,7 @@ nav ul{
 .shop{
     display: flex;
     gap: 10px;
+    margin-top: 10px;
     width: 80%;
 }
 
@@ -192,8 +201,10 @@ nav ul{
     position: sticky;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    align-items: center;
+    width: 80%;
     top: 0;
+    margin: auto;
 }
 
 #cartList{
@@ -246,7 +257,6 @@ li{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
 }
 
 .footer{
