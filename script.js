@@ -88,7 +88,7 @@ function removeItem(event){
 
 //Convert string to Floats with two decimals for innerHTML in the addItem function
 function toNumber(string){
-    return Math.round(string * 100) / 100
+    return Math.round(string * 100) / 100;
 }
 
 //Fetch request
