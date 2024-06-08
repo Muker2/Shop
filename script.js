@@ -54,7 +54,7 @@ function addItem(event) {
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
     productCount.innerHTML = qty;
-    productPrize.innerHTML = price * qty;
+    productPrize.innerHTML = toNumber(price * qty); //added toNumber to fix the decimal error for single Items
 
     //Button
     removeBtn.addEventListener("click", removeItem);
@@ -68,10 +68,12 @@ function addItem(event) {
 
     cart.appendChild(productContainer);
 
-    totalCost += toNumber(productPrize.innerHTML);
-    console.log(totalCost);
+    totalCost += toNumber(productPrize.innerHTML); //*100/100;
+    //added toFixed converter to totalCost as finalcost variable
 
-    updateTotal(totalCost);
+    finalcost = totalCost.toFixed(2);
+    console.log(totalCost);
+    updateTotal(finalcost);
 
 }
 
@@ -89,7 +91,12 @@ function removeItem(event){
 //Convert string to Floats with two decimals for innerHTML in the addItem function
 function toNumber(string){
     return Math.round(string * 100) / 100;
+    //const num = Math.toFixed(2);
+    //return num
 }
+
+
+
 
 //Fetch request
 fetch('https://dummyjson.com/auth/refresh', {
