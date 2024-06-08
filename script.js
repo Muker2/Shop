@@ -131,7 +131,7 @@ function displayProducts() {
                 <h2 data-title="${product.title}">${product.title}</h2>
             </div>
             <div class="grid-item-desc">
-            <p>${desc}</p>
+            <p>${product.description}</p>
             </div>
         </div>
         <div class="grid-price">

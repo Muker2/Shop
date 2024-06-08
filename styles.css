@@ -202,7 +202,6 @@ nav ul{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
     top: 0;
     margin: auto;
 }
@@ -210,12 +209,13 @@ nav ul{
 #cartList{
   list-style: none; 
   height: 300px;
+  width: 100%;
   padding: 0;
   overflow-y:auto;
 }
 
 #cartBtn{
-    width: 70%;
+    width: 40%;
     height: 50px;
     background-color: white;
     color: #0598ce;
@@ -226,6 +226,12 @@ nav ul{
 #cartBtn:hover{
     background-color: #0598ce;
     color: white;
+}
+
+#cartBtnList{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .prod-img{
@@ -255,7 +261,7 @@ li{
 
 .productContainer{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
