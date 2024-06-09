@@ -71,6 +71,8 @@ function addItem(event) {
     totalCost += toNumber(productPrize.innerHTML);
     console.log(totalCost);
 
+    document.querySelectorAll("#grid-counter-qty").forEach(field => field.textContent = 1);
+
     updateTotal(totalCost);
 
 }
