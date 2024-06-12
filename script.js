@@ -142,9 +142,9 @@ function displayProducts() {
                 <button class="add">Add to Cart</button>
                 <div id="grid-counter">
                     <div id="grid-counter-btn">
-                        <button class="countBtn">+</button>
-                        <p id="grid-counter-qty">1<p>
                         <button class="countBtn">-</button>
+                        <p id="grid-counter-qty">1<p>
+                        <button class="countBtn">+</button>
                     </div>
                 </div>
             </div>
