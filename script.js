@@ -47,10 +47,7 @@ function addItem(event) {
     const productCount = document.createElement("p");
     const productPrize = document.createElement("p");
 
-    cartList.push(productItem);
-    console.log(productPrize);
-
-    //Set content for elements
+        //Set content for elements
     productContainer.className="productContainer";
     cartItem.textContent = productItem;
     productCount.innerHTML = qty;
@@ -71,6 +68,8 @@ function addItem(event) {
     totalCost += toNumber(productPrize.innerHTML);
     console.log(totalCost);
 
+    cartList.push(productItem);
+
     document.querySelectorAll("#grid-counter-qty").forEach(field => field.textContent = 1);
 
     updateTotal(totalCost);
@@ -85,6 +84,7 @@ function updateTotal(price){
 //Remove Item from Shopping Cart
 function removeItem(event){
     const item = event.target.parentElement;
+    console.log (item);
     cart.removeChild(item);
 }
 
