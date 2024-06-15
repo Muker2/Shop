@@ -126,7 +126,15 @@ function fetchData() {
 function displayProducts() {
     fetchData().then(items => {
         items.forEach(product => {
-            const template = `<div class="grid-item" data-product-type="Notebook">
+            const produkt = {
+                name: product.title,
+                desc: product.description,
+                price: product.price
+            };
+            shoppingItems.push(produkt);
+            console.log(shoppingItems);
+
+            /*const template = `<div class="grid-item" data-product-type="Notebook">
         <div class="prod-img"> <img src=${pic} alt=""></div>
         <div class="grid-item-info">
             <div class="grid-item-header">
@@ -152,7 +160,7 @@ function displayProducts() {
     </div>`;
 
             document.querySelector("#grid").insertAdjacentHTML("beforeend", template);
-
+*/
         });
     });
 }
