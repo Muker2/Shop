@@ -10,6 +10,8 @@ const cartList = [];
 let qty = 1;
 let totalCost = 0;
 
+const main = document.querySelector("#grid");
+
 function count(event){
     //Get Quantityfield of corresponding Product
     const qtyField = event.target.closest("#grid-counter").querySelector("#grid-counter-qty");
@@ -124,15 +126,38 @@ function fetchData() {
 
 //Display product list from API
 function displayProducts() {
+    
+
     fetchData().then(items => {
         items.forEach(product => {
-            const produkt = {
+            const productItem = {
                 name: product.title,
                 desc: product.description,
                 price: product.price
             };
-            shoppingItems.push(produkt);
+
+            shoppingItems.push(productItem);
             console.log(shoppingItems);
+
+            const productCard = document.createElement("div");
+            productCard.classList.add("product-card");
+
+            const productHeader = document.createElement("div");
+            productHeader.classList.add("product-header");
+
+            const productTitle = document.createElement("h2");
+            productTitle.classList.add("product-title");
+            productTitle.innerHTML = productItem.name;
+
+            const productPrize = document.createElement("p");
+            productPrize.classList.add("product-prize");
+            productPrize.innerHTML = productItem.price;
+
+            productHeader.append(productTitle)
+            productCard.append(productHeader, productPrize);
+
+            main.append(productCard);
+
 
             /*const template = `<div class="grid-item" data-product-type="Notebook">
         <div class="prod-img"> <img src=${pic} alt=""></div>
