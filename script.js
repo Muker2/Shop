@@ -10,8 +10,6 @@ const cartList = [];
 let qty = 1;
 let totalCost = 0;
 
-const main = document.querySelector("#grid");
-
 function count(event){
     //Get Quantityfield of corresponding Product
     const qtyField = event.target.closest("#grid-counter").querySelector("#grid-counter-qty");
@@ -51,9 +49,10 @@ function addItem(event) {
 
         //Set content for elements
     productContainer.className="productContainer";
+    productContainer.dataset.cartprice = price;
     cartItem.textContent = productItem;
     productCount.innerHTML = qty;
-    productPrize.innerHTML = price * qty;
+    productPrize.innerHTML = toNumber(price * qty); //added toNumber to fix the decimal error for single Items
 
     //Button
     removeBtn.addEventListener("click", removeItem);
@@ -67,15 +66,14 @@ function addItem(event) {
 
     cart.appendChild(productContainer);
 
-    totalCost += toNumber(productPrize.innerHTML);
     console.log(totalCost);
-
-    cartList.push(productItem);
-
-    document.querySelectorAll("#grid-counter-qty").forEach(field => field.textContent = 1);
+    totalCost += toNumber(productPrize.innerHTML); //*100/100;
+    //added toFixed converter to totalCost as finalcost variable
 
     updateTotal(totalCost);
-
+    finalcost = totalCost.toFixed(2);
+    console.log(totalCost);
+    updateTotal(finalcost);
 }
 
 //Update the Total Cost field in the Shopping Cart
@@ -85,15 +83,23 @@ function updateTotal(price){
 
 //Remove Item from Shopping Cart
 function removeItem(event){
-    const item = event.target.parentElement;
-    console.log (item);
+    const item = event.target.closest(".productContainer");
+    const itemPrice = item.dataset.cartprice;
+    totalCost -= itemPrice;
     cart.removeChild(item);
+
+    updateTotal(totalCost);
 }
 
 //Convert string to Floats with two decimals for innerHTML in the addItem function
 function toNumber(string){
     return Math.round(string * 100) / 100;
+    const num = Math.toFixed(2);
+    return num;
 }
+
+
+
 
 //Fetch request
 fetch('https://dummyjson.com/auth/refresh', {
@@ -126,40 +132,9 @@ function fetchData() {
 
 //Display product list from API
 function displayProducts() {
-    
-
     fetchData().then(items => {
         items.forEach(product => {
-            const productItem = {
-                name: product.title,
-                desc: product.description,
-                price: product.price
-            };
-
-            shoppingItems.push(productItem);
-            console.log(shoppingItems);
-
-            const productCard = document.createElement("div");
-            productCard.classList.add("product-card");
-
-            const productHeader = document.createElement("div");
-            productHeader.classList.add("product-header");
-
-            const productTitle = document.createElement("h2");
-            productTitle.classList.add("product-title");
-            productTitle.innerHTML = productItem.name;
-
-            const productPrize = document.createElement("p");
-            productPrize.classList.add("product-prize");
-            productPrize.innerHTML = productItem.price;
-
-            productHeader.append(productTitle)
-            productCard.append(productHeader, productPrize);
-
-            main.append(productCard);
-
-
-            /*const template = `<div class="grid-item" data-product-type="Notebook">
+            const template = `<div class="grid-item" data-product-type="Notebook">
         <div class="prod-img"> <img src=${pic} alt=""></div>
         <div class="grid-item-info">
             <div class="grid-item-header">
@@ -175,9 +150,9 @@ function displayProducts() {
                 <button class="add">Add to Cart</button>
                 <div id="grid-counter">
                     <div id="grid-counter-btn">
-                        <button class="countBtn">-</button>
-                        <p id="grid-counter-qty">1<p>
                         <button class="countBtn">+</button>
+                        <p id="grid-counter-qty">1<p>
+                        <button class="countBtn">-</button>
                     </div>
                 </div>
             </div>
@@ -185,7 +160,7 @@ function displayProducts() {
     </div>`;
 
             document.querySelector("#grid").insertAdjacentHTML("beforeend", template);
-*/
+
         });
     });
 }
