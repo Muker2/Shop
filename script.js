@@ -134,6 +134,10 @@ function fetchData() {
 function displayProducts() {
     fetchData().then(items => {
         items.forEach(product => {
+            shoppingItems.push(product);
+             for (var i = 0; i < shoppingItems.length; i++){
+                console.log(shoppingItems[i]);
+             }
             const template = `<div class="grid-item" data-product-type="Notebook">
         <div class="prod-img"> <img src=${pic} alt=""></div>
         <div class="grid-item-info">
