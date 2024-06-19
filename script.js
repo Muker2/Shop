@@ -41,15 +41,18 @@ grid.addEventListener("click", (event) => {
 function addItem(event) {
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
     const price = event.target.closest(".grid-item").querySelector('[data-price]').dataset.price;
+    const quantity = event.target.closest(".grid-item").querySelector('[data-quantity]').dataset.quantity;
+
     const productContainer = document.createElement("div");
     const cartItem = document.createElement("li");
     const removeBtn = document.createElement("button");
     const productCount = document.createElement("p");
     const productPrize = document.createElement("p");
 
-        //Set content for elements
+    //Set content for elements
     productContainer.className="productContainer";
     productContainer.dataset.cartprice = price;
+    productContainer.dataset.productQuantity = quantity;
     cartItem.textContent = productItem;
     productCount.innerHTML = qty;
     productPrize.innerHTML = toNumber(price * qty); //added toNumber to fix the decimal error for single Items
@@ -85,7 +88,10 @@ function updateTotal(price){
 function removeItem(event){
     const item = event.target.closest(".productContainer");
     const itemPrice = item.dataset.cartprice;
-    totalCost -= itemPrice;
+    const itemQuantity = item.dataset.productQuantity;
+    const itemTotal = itemPrice * itemQuantity;
+    console.log(itemQuantity);
+    totalCost -= itemTotal;
     cart.removeChild(item);
 
     updateTotal(totalCost);
@@ -97,9 +103,6 @@ function toNumber(string){
     const num = Math.toFixed(2);
     return num;
 }
-
-
-
 
 //Fetch request
 fetch('https://dummyjson.com/auth/refresh', {
@@ -155,7 +158,7 @@ function displayProducts() {
                 <div id="grid-counter">
                     <div id="grid-counter-btn">
                         <button class="countBtn">+</button>
-                        <p id="grid-counter-qty">1<p>
+                        <p id="grid-counter-qty" data-quantity="${qty}">${qty}<p>
                         <button class="countBtn">-</button>
                     </div>
                 </div>
