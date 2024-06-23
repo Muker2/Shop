@@ -1,42 +1,12 @@
-const pic = "images/Laptop.jpg";
-const desc = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum nisl ac sagittis porttitor";
 const shoppingList = document.querySelector(".cart");
-const shoppingItems = [];
-const cartBtn = document.querySelectorAll(".add");
 const grid = document.querySelector("#grid");
-const counter = document.querySelectorAll(".countBtn");
 const cart = document.querySelector("#cartList");
+
+const shoppingItems = [];
 const cartList = [];
+
 let qty = 1;
 let totalCost = 0;
-
-function count(event){
-    //Get Quantityfield of corresponding Product
-    const qtyField = event.target.closest("#grid-counter").querySelector("#grid-counter-qty");
-
-    //Increment/Decrement Quantity
-    if (event.target.textContent === "+"){
-        qty++;
-        
-    }else if (event.target.textContent === "-"){
-        qty--;
-    }
-    if (qty <= 0) qty = 1;
-
-    //Update Quantityfield
-    qtyField.textContent  = qty;
-}
-
-grid.addEventListener("click", (event) => {
-    if (event.target.tagName === "BUTTON") {
-        if (event.target.classList.contains("countBtn")) {
-            count(event);
-        } else if (event.target.classList.contains("add")) {
-            addItem(event);
-        }
-    }
-});
-
 
 function addItem(event) {
     const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
@@ -155,12 +125,28 @@ function displayProducts() {
 
                 const increaseButton = document.createElement("button");
                 increaseButton.innerText = "+";
+                increaseButton.classList.add("counterBtn");
+                increaseButton.addEventListener("click", event => {
+                    qty++;
+                    productQty.innerText = qty;
+                }
+                )
 
                 const decreaseButton = document.createElement("button");
                 decreaseButton.innerText = "-";
+                decreaseButton.classList.add("counterBtn");
+                decreaseButton.addEventListener("click", event => {
+                    qty--;
+                    if(qty < 1) {
+                        qty = 1;
+                    }
+                    productQty.innerText = qty;
+                }
+                )
 
                 const productQty = document.createElement("p");
                 productQty.innerText = qty;
+                productQty.classList.add("productQty");
 
                 productButtonField.append(productButton);
                 productButtonField.append(decreaseButton);
@@ -172,12 +158,8 @@ function displayProducts() {
                 productCard.append(productButton);
                 productCard.append(productButtonField);
 
-
                 grid.append(productCard)
                 console.log(product);
-             
-
-
         });
     });
 }
