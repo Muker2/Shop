@@ -138,51 +138,45 @@ function displayProducts() {
     fetchData().then(items => {
         items.forEach(product => {
             shoppingItems.push(product);
-             for (var i = 0; i < shoppingItems.length; i++){
                 const productCard = document.createElement("div");
+                productCard.classList.add("grid-item");
 
                 const productName = document.createElement("p");
-                productName.innerText = shoppingItems[i].title;
-
-                const productDescription = document.createElement("p");
-                productDescription.innerText = shoppingItems[i].description;
+                productName.innerText = product.title;
 
                 const productPrice = document.createElement("p");
-                productPrice.innerText = shoppingItems[i].price;
+                productPrice.innerText = product.price;
+
+                const productButtonField = document.createElement("div");
+                productButtonField.classList.add("buttonField");
+
+                const productButton = document.createElement("button");
+                productButton.innerText = "Add to Basket";
+
+                const increaseButton = document.createElement("button");
+                increaseButton.innerText = "+";
+
+                const decreaseButton = document.createElement("button");
+                decreaseButton.innerText = "-";
+
+                const productQty = document.createElement("p");
+                productQty.innerText = qty;
+
+                productButtonField.append(productButton);
+                productButtonField.append(decreaseButton);
+                productButtonField.append(productQty);
+                productButtonField.append(increaseButton);
 
                 productCard.append(productName);
-                productCard.append(productDescription);
                 productCard.append(productPrice);
+                productCard.append(productButton);
+                productCard.append(productButtonField);
+
 
                 grid.append(productCard)
-                console.log(shoppingItems[i]);
-             }
-           /*const template = `<div class="grid-item" data-product-type="Notebook">
-        <div class="prod-img"> <img src=${pic} alt=""></div>
-        <div class="grid-item-info">
-            <div class="grid-item-header">
-                <h2 data-title="${product.title}">${product.title}</h2>
-            </div>
-            <div class="grid-item-desc">
-            <p>${product.description}</p>
-            </div>
-        </div>
-        <div class="grid-price">
-            <p data-price="${product.price}">${product.price}€</p>
-            <div id="grid-checkout">
-                <button class="add">Add to Cart</button>
-                <div id="grid-counter">
-                    <div id="grid-counter-btn">
-                        <button class="countBtn">+</button>
-                        <p id="grid-counter-qty" data-quantity="${qty}">${qty}<p>
-                        <button class="countBtn">-</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`;
+                console.log(product);
+             
 
-            document.querySelector("#grid").insertAdjacentHTML("beforeend", template);*/
 
         });
     });
