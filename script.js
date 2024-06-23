@@ -139,9 +139,25 @@ function displayProducts() {
         items.forEach(product => {
             shoppingItems.push(product);
              for (var i = 0; i < shoppingItems.length; i++){
+                const productCard = document.createElement("div");
+
+                const productName = document.createElement("p");
+                productName.innerText = shoppingItems[i].title;
+
+                const productDescription = document.createElement("p");
+                productDescription.innerText = shoppingItems[i].description;
+
+                const productPrice = document.createElement("p");
+                productPrice.innerText = shoppingItems[i].price;
+
+                productCard.append(productName);
+                productCard.append(productDescription);
+                productCard.append(productPrice);
+
+                grid.append(productCard)
                 console.log(shoppingItems[i]);
              }
-            const template = `<div class="grid-item" data-product-type="Notebook">
+           /*const template = `<div class="grid-item" data-product-type="Notebook">
         <div class="prod-img"> <img src=${pic} alt=""></div>
         <div class="grid-item-info">
             <div class="grid-item-header">
@@ -166,7 +182,7 @@ function displayProducts() {
         </div>
     </div>`;
 
-            document.querySelector("#grid").insertAdjacentHTML("beforeend", template);
+            document.querySelector("#grid").insertAdjacentHTML("beforeend", template);*/
 
         });
     });
