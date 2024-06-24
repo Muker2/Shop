@@ -64,16 +64,20 @@ function fetchData() {
 function addItem(event){
     const row = document.createElement("li");
     const productRow = document.createElement("div");
+    const removeBtn = document.createElement("button");
+    removeBtn.addEventListener("click", removeItem);
 
     const name = event.target.parentElement.querySelector(".productName").innerText;
     const price = event.target.parentElement.querySelector(".productPrice").innerText;
     const quantity = event.target.parentElement.querySelector(".productQty").innerText;
 
+    const totalPrice = price * quantity;
+
     const rowName = document.createElement("p");
     rowName.innerText = name;
 
     const rowPrice = document.createElement("p");
-    rowPrice.innerText = price;
+    rowPrice.innerText = totalPrice;
 
     const rowQty = document.createElement("p");
     rowQty.innerText = quantity;
@@ -81,14 +85,18 @@ function addItem(event){
     productRow.append(rowName);
     productRow.append(rowPrice);
     productRow.append(rowQty);
+    productRow.append(removeBtn);
 
     row.append(productRow);
-
     cart.append(row);
-    
-    
 
-    console.log(name, price, quantity);
+    totalCost += price * quantity;
+    console.log(totalCost);
+}
+
+function removeItem(event){
+    const buttonParent = event.target.parentNode;
+    buttonParent.remove();
 }
 
 
