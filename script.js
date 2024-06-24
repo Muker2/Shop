@@ -8,6 +8,7 @@ const cartList = [];
 let qty = 1;
 let totalCost = 0;
 
+
 //Update the Total Cost field in the Shopping Cart
 function updateTotal(price){
     document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price + "€";
@@ -29,9 +30,10 @@ function removeItem(event){
 //Convert string to Floats with two decimals for innerHTML in the addItem function
 function toNumber(string){
     return Math.round(string * 100) / 100;
-    const num = Math.toFixed(2);
-    return num;
 }
+
+
+
 
 //Fetch request
 fetch('https://dummyjson.com/auth/refresh', {
