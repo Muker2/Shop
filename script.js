@@ -1,6 +1,7 @@
 const shoppingList = document.querySelector(".cart");
 const grid = document.querySelector("#grid");
 const cart = document.querySelector("#cartList");
+const cartTotal = document.querySelector("#totalPrice");
 
 const shoppingItems = [];
 const cartList = [];
@@ -8,32 +9,17 @@ const cartList = [];
 let qty = 1;
 let totalCost = 0;
 
-
 //Update the Total Cost field in the Shopping Cart
 function updateTotal(price){
     document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price + "€";
 }
 
-//Remove Item from Shopping Cart
-function removeItem(event){
-    const item = event.target.closest(".productContainer");
-    const itemPrice = item.dataset.cartprice;
-    const itemQuantity = item.dataset.productQuantity;
-    const itemTotal = itemPrice * itemQuantity;
-    console.log(itemQuantity);
-    totalCost -= itemTotal;
-    cart.removeChild(item);
-
-    updateTotal(totalCost);
-}
-
-//Convert string to Floats with two decimals for innerHTML in the addItem function
+/*Convert string to Floats with two decimals for innerHTML in the addItem function
 function toNumber(string){
     return Math.round(string * 100) / 100;
-}
-
-
-
+    const num = Math.toFixed(2);
+    return num;
+}*/
 
 //Fetch request
 fetch('https://dummyjson.com/auth/refresh', {
@@ -79,9 +65,11 @@ function addItem(event){
     rowName.innerText = name;
 
     const rowPrice = document.createElement("p");
+    rowPrice.setAttribute("id", "productPrice");
     rowPrice.innerText = totalPrice;
 
     const rowQty = document.createElement("p");
+    rowQty.setAttribute("id", "productQty");
     rowQty.innerText = quantity;
 
     productRow.append(rowName);
@@ -93,12 +81,22 @@ function addItem(event){
     cart.append(row);
 
     totalCost += price * quantity;
+    totalPrice.innerHTML = totalCost;
+    
     console.log(totalCost);
+    updateTotal(totalCost);
 }
 
+//Remove Item from Shopping Cart
 function removeItem(event){
-    const buttonParent = event.target.parentNode;
-    buttonParent.remove();
+    const item = event.target.parentElement;
+    const itemPrice = parseFloat(item.querySelector("#productPrice").innerText);
+    const itemQty = parseInt(item.querySelector("#productQty").innerText, 10);
+    console.log(itemPrice);
+
+    totalCost -= (itemPrice * itemQty);
+    updateTotal(totalCost);
+    item.remove();
 }
 
 
