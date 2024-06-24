@@ -92,9 +92,8 @@ function removeItem(event){
     const item = event.target.parentElement;
     const itemPrice = parseFloat(item.querySelector("#productPrice").innerText);
     const itemQty = parseInt(item.querySelector("#productQty").innerText, 10);
-    console.log(itemPrice);
 
-    totalCost -= (itemPrice * itemQty);
+    totalCost -= (itemPrice/itemQty) * itemQty;
     updateTotal(totalCost);
     item.remove();
 }
