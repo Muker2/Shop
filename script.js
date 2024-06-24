@@ -8,47 +8,6 @@ const cartList = [];
 let qty = 1;
 let totalCost = 0;
 
-function addItem(event) {
-    const productItem = event.target.closest(".grid-item").querySelector('[data-title]').dataset.title;
-    const price = event.target.closest(".grid-item").querySelector('[data-price]').dataset.price;
-    const quantity = event.target.closest(".grid-item").querySelector('[data-quantity]').dataset.quantity;
-
-    const productContainer = document.createElement("div");
-    const cartItem = document.createElement("li");
-    const removeBtn = document.createElement("button");
-    const productCount = document.createElement("p");
-    const productPrize = document.createElement("p");
-
-    //Set content for elements
-    productContainer.className="productContainer";
-    productContainer.dataset.cartprice = price;
-    productContainer.dataset.productQuantity = quantity;
-    cartItem.textContent = productItem;
-    productCount.innerHTML = qty;
-    productPrize.innerHTML = toNumber(price * qty); //added toNumber to fix the decimal error for single Items
-
-    //Button
-    removeBtn.addEventListener("click", removeItem);
-    removeBtn.textContent = "X";
-
-    //Append elements
-    productContainer.append(cartItem);
-    productContainer.append(productCount);
-    productContainer.append(productPrize);
-    productContainer.append(removeBtn);
-
-    cart.appendChild(productContainer);
-
-    console.log(totalCost);
-    totalCost += toNumber(productPrize.innerHTML); //*100/100;
-    //added toFixed converter to totalCost as finalcost variable
-
-    updateTotal(totalCost);
-    finalcost = totalCost.toFixed(2);
-    console.log(totalCost);
-    updateTotal(finalcost);
-}
-
 //Update the Total Cost field in the Shopping Cart
 function updateTotal(price){
     document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price + "€";
@@ -102,6 +61,36 @@ function fetchData() {
     }).then(data => data.products || [])
 }
 
+function addItem(event){
+    const row = document.createElement("li");
+    const productRow = document.createElement("div");
+
+    const name = event.target.parentElement.querySelector(".productName").innerText;
+    const price = event.target.parentElement.querySelector(".productPrice").innerText;
+    const quantity = event.target.parentElement.querySelector(".productQty").innerText;
+
+    const rowName = document.createElement("p");
+    rowName.innerText = name;
+
+    const rowPrice = document.createElement("p");
+    rowPrice.innerText = price;
+
+    const rowQty = document.createElement("p");
+    rowQty.innerText = quantity;
+
+    productRow.append(rowName);
+    productRow.append(rowPrice);
+    productRow.append(rowQty);
+
+    row.append(productRow);
+
+    cart.append(row);
+    
+    
+
+    console.log(name, price, quantity);
+}
+
 
 //Display product list from API
 function displayProducts() {
@@ -113,15 +102,18 @@ function displayProducts() {
 
                 const productName = document.createElement("p");
                 productName.innerText = product.title;
+                productName.classList.add("productName");
 
                 const productPrice = document.createElement("p");
                 productPrice.innerText = product.price;
+                productPrice.classList.add("productPrice");
 
                 const productButtonField = document.createElement("div");
                 productButtonField.classList.add("buttonField");
 
                 const productButton = document.createElement("button");
                 productButton.innerText = "Add to Basket";
+                productButton.addEventListener("click", addItem);
 
                 const increaseButton = document.createElement("button");
                 increaseButton.innerText = "+";
