@@ -2,6 +2,7 @@ const shoppingList = document.querySelector(".cart");
 const grid = document.querySelector("#grid");
 const cart = document.querySelector("#cartList");
 const cartTotal = document.querySelector("#totalPrice");
+const cartRemove = document.querySelector("#cartBtnList");
 
 const shoppingItems = [];
 const cartList = [];
@@ -11,7 +12,10 @@ let totalCost = 0;
 
 //Update the Total Cost field in the Shopping Cart
 function updateTotal(price){
-    document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price + "€";
+    if(price < 0){
+        price = 0;
+    }
+    document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price.toFixed(2) + "€";
 }
 
 /*Convert string to Floats with two decimals for innerHTML in the addItem function
@@ -59,6 +63,11 @@ function addItem(event){
     const price = event.target.parentElement.querySelector(".productPrice").innerText;
     const quantity = event.target.parentElement.querySelector(".productQty").innerText;
 
+    const item = {title: name,
+        quantity: quantity,
+        price: price,
+    }
+
     const totalPrice = price * quantity;
 
     const rowName = document.createElement("p");
@@ -85,13 +94,16 @@ function addItem(event){
     
     console.log(totalCost);
     updateTotal(totalCost);
+
+    cartList.push(item);
+
 }
 
 //Remove Item from Shopping Cart
 function removeItem(event){
     const item = event.target.parentElement;
-    const itemPrice = parseFloat(item.querySelector("#productPrice").innerText);
-    const itemQty = parseInt(item.querySelector("#productQty").innerText, 10);
+    const itemPrice = item.querySelector("#productPrice").innerText;
+    const itemQty = item.querySelector("#productQty").innerText;
 
     totalCost -= (itemPrice/itemQty) * itemQty;
     updateTotal(totalCost);
