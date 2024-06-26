@@ -5,7 +5,7 @@ const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
 
 const shoppingItems = [];
-const cartList = [];
+let cartList = [];
 
 let qty = 1;
 let totalCost = 0;
@@ -17,6 +17,17 @@ function updateTotal(price){
     }
     document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price.toFixed(2) + "€";
 }
+
+function clearCart() {
+    while (cart.firstChild) {
+        cart.removeChild(cart.firstChild);
+    }
+    cartList = [];
+    totalCost = 0;
+    updateTotal(totalCost);
+}
+
+cartRemove.addEventListener("click", clearCart);
 
 /*Convert string to Floats with two decimals for innerHTML in the addItem function
 function toNumber(string){
@@ -92,11 +103,9 @@ function addItem(event){
     totalCost += price * quantity;
     totalPrice.innerHTML = totalCost;
     
-    console.log(totalCost);
     updateTotal(totalCost);
 
     cartList.push(item);
-
 }
 
 //Remove Item from Shopping Cart
@@ -170,7 +179,6 @@ function displayProducts() {
                 productCard.append(productButtonField);
 
                 grid.append(productCard)
-                console.log(product);
         });
     });
 }
