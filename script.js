@@ -3,38 +3,10 @@ const grid = document.querySelector("#grid");
 const cart = document.querySelector("#cartList");
 const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
-
-const shoppingItems = [];
-let cartList = [];
-
+let shoppingItems = [];
+const cartList = [];
 let qty = 1;
 let totalCost = 0;
-
-//Update the Total Cost field in the Shopping Cart
-function updateTotal(price){
-    if(price < 0){
-        price = 0;
-    }
-    document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price.toFixed(2) + "€";
-}
-
-function clearCart() {
-    while (cart.firstChild) {
-        cart.removeChild(cart.firstChild);
-    }
-    cartList = [];
-    totalCost = 0;
-    updateTotal(totalCost);
-}
-
-cartRemove.addEventListener("click", clearCart);
-
-/*Convert string to Floats with two decimals for innerHTML in the addItem function
-function toNumber(string){
-    return Math.round(string * 100) / 100;
-    const num = Math.toFixed(2);
-    return num;
-}*/
 
 //Fetch request
 fetch('https://dummyjson.com/auth/refresh', {
@@ -64,61 +36,22 @@ function fetchData() {
     }).then(data => data.products || [])
 }
 
-function addItem(event){
-    const row = document.createElement("li");
-    const productRow = document.createElement("div");
-    const removeBtn = document.createElement("button");
-    removeBtn.addEventListener("click", removeItem);
-
-    const name = event.target.parentElement.querySelector(".productName").innerText;
-    const price = event.target.parentElement.querySelector(".productPrice").innerText;
-    const quantity = event.target.parentElement.querySelector(".productQty").innerText;
-
-    const item = {title: name,
-        quantity: quantity,
-        price: price,
+//Update the Total Cost field in the Shopping Cart
+function updateTotal(price){
+    if(price < 0){
+        price = 0;
     }
-
-    const totalPrice = price * quantity;
-
-    const rowName = document.createElement("p");
-    rowName.innerText = name;
-
-    const rowPrice = document.createElement("p");
-    rowPrice.setAttribute("id", "productPrice");
-    rowPrice.innerText = totalPrice;
-
-    const rowQty = document.createElement("p");
-    rowQty.setAttribute("id", "productQty");
-    rowQty.innerText = quantity;
-
-    productRow.append(rowName);
-    productRow.append(rowPrice);
-    productRow.append(rowQty);
-    productRow.append(removeBtn);
-
-    row.append(productRow);
-    cart.append(row);
-
-    totalCost += price * quantity;
-    totalPrice.innerHTML = totalCost;
-    
-    updateTotal(totalCost);
-
-    cartList.push(item);
+    document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price.toFixed(2) + "€";
 }
 
-//Remove Item from Shopping Cart
-function removeItem(event){
-    const item = event.target.parentElement;
-    const itemPrice = item.querySelector("#productPrice").innerText;
-    const itemQty = item.querySelector("#productQty").innerText;
-
-    totalCost -= (itemPrice/itemQty) * itemQty;
+function clearCart() {
+    while (cart.firstChild) {
+        cart.removeChild(cart.firstChild);
+    }
+    cartList = [];
+    totalCost = 0;
     updateTotal(totalCost);
-    item.remove();
 }
-
 
 //Display product list from API
 function displayProducts() {
@@ -182,6 +115,100 @@ function displayProducts() {
         });
     });
 }
+
+cartRemove.addEventListener("click", clearCart);
+
+/*Convert string to Floats with two decimals for innerHTML in the addItem function
+function toNumber(string){
+    return Math.round(string * 100) / 100;
+    const num = Math.toFixed(2);
+    return num;
+}*/
+
+
+
+function addItem(event){
+    const row = document.createElement("li");
+    const productRow = document.createElement("div");
+    const removeBtn = document.createElement("button");
+    removeBtn.addEventListener("click", removeItem);
+
+    const name = event.target.parentElement.querySelector(".productName").innerText;
+    const price = event.target.parentElement.querySelector(".productPrice").innerText;
+    const quantity = event.target.parentElement.querySelector(".productQty").innerText;
+
+    const itemExists = cartList.findIndex(item => item.title === name);
+
+    if (itemExists > -1){
+        const itemex = cartList[itemExists];
+        itemex.quantity += quantity;
+        itemex.price += price * quantity;
+
+        console.log("Cart List:", cartList);
+        console.log("Item Exists at Index:", itemExists);
+
+        const rowex = document.querySelector(`#cartList li[data-index="${itemExists}"]`);
+        if(rowex){
+        rowex.querySelector(".productPrice").innerText = itemex.price;
+        rowex.querySelector(".productQty").innerText = itemex.quantity;
+}else{
+    console.log("No rowex found")
+}
+    }else{
+        //Push product into Array
+        const item = {title: name,
+        quantity: quantity,
+        price: price,
+    }
+
+    cartList.push(item);
+
+    row.classList.add("cart-item");
+    row.setAttribute("data-index", cartList.length - 1); // Unique identifier
+
+    const totalPrice = price * quantity;
+
+    const rowName = document.createElement("p");
+    rowName.innerText = name;
+
+    const rowPrice = document.createElement("p");
+    rowPrice.setAttribute("id", "productPrice");
+    rowPrice.innerText = totalPrice;
+
+    const rowQty = document.createElement("p");
+    rowQty.setAttribute("id", "productQty");
+    rowQty.innerText = quantity;
+
+    productRow.append(rowName);
+    productRow.append(rowPrice);
+    productRow.append(rowQty);
+    productRow.append(removeBtn);
+
+    row.append(productRow);
+    cart.append(row);
+
+    totalCost += price * quantity;
+    totalPrice.innerHTML = totalCost;
+    
+    updateTotal(totalCost);
+
+
+}
+}
+
+//Remove Item from Shopping Cart
+function removeItem(event){
+    const item = event.target.parentElement;
+    const itemPrice = item.querySelector("#productPrice").innerText;
+    const itemQty = item.querySelector("#productQty").innerText;
+
+    totalCost -= (itemPrice/itemQty) * itemQty;
+    updateTotal(totalCost);
+    item.remove();
+}
+
+
+
 
 displayProducts();
 
