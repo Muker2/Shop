@@ -4,7 +4,7 @@ const cart = document.querySelector("#cartList");
 const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
 let shoppingItems = [];
-const cartList = [];
+let cartList = [];
 let qty = 1;
 let totalCost = 0;
 
@@ -38,7 +38,7 @@ function fetchData() {
 
 //Update the Total Cost field in the Shopping Cart
 function updateTotal(price){
-    if(price < 0){
+    if(price <= 0){
         price = 0;
     }
     document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price.toFixed(2) + "€";
@@ -137,7 +137,7 @@ function addItem(event){
     const price = event.target.parentElement.querySelector(".productPrice").innerText;
     const quantity = event.target.parentElement.querySelector(".productQty").innerText;
 
-    const itemExists = cartList.findIndex(item => item.title === name);
+    const itemExists = cartList.findIndex(item => item.title == name);
 
     if (itemExists > -1){
         const itemex = cartList[itemExists];
@@ -147,7 +147,7 @@ function addItem(event){
         console.log("Cart List:", cartList);
         console.log("Item Exists at Index:", itemExists);
 
-        const rowex = document.querySelector(`#cartList li[data-index="${itemExists}"]`);
+        const rowex = document.querySelector("#cartList li");
         if(rowex){
         rowex.querySelector(".productPrice").innerText = itemex.price;
         rowex.querySelector(".productQty").innerText = itemex.quantity;
@@ -162,9 +162,6 @@ function addItem(event){
     }
 
     cartList.push(item);
-
-    row.classList.add("cart-item");
-    row.setAttribute("data-index", cartList.length - 1); // Unique identifier
 
     const totalPrice = price * quantity;
 
@@ -195,6 +192,65 @@ function addItem(event){
 
 }
 }
+
+function addItem(event) {
+    const name = event.target.parentElement.parentElement.querySelector(".productName").innerText;
+    const price = parseFloat(event.target.parentElement.parentElement.querySelector(".productPrice").innerText);
+    const quantity = parseInt(event.target.parentElement.querySelector(".productQty").innerText, 10);
+
+    const itemExists = cartList.findIndex(item => item.title === name);
+
+    if (itemExists > -1) {
+        const itemex = cartList[itemExists];
+        itemex.quantity += quantity;
+        itemex.price += price * quantity;
+
+        const rows = cart.querySelectorAll("li");
+        rows.forEach(row => {
+            if (row.querySelector("p").innerText === name) {
+                row.querySelector("#productPrice").innerText = itemex.price.toFixed(2);
+                row.querySelector("#productQty").innerText = itemex.quantity;
+            }
+        });
+    } else {
+        const item = {
+            title: name,
+            quantity: quantity,
+            price: price * quantity
+        };
+
+        cartList.push(item);
+
+        const row = document.createElement("li");
+        const productRow = document.createElement("div");
+        const removeBtn = document.createElement("button");
+        removeBtn.innerText = "Remove";
+        removeBtn.addEventListener("click", removeItem);
+
+        const rowName = document.createElement("p");
+        rowName.innerText = name;
+
+        const rowPrice = document.createElement("p");
+        rowPrice.setAttribute("id", "productPrice");
+        rowPrice.innerText = item.price.toFixed(2);
+
+        const rowQty = document.createElement("p");
+        rowQty.setAttribute("id", "productQty");
+        rowQty.innerText = quantity;
+
+        productRow.append(rowName);
+        productRow.append(rowPrice);
+        productRow.append(rowQty);
+        productRow.append(removeBtn);
+
+        row.append(productRow);
+        cart.append(row);
+    }
+
+    totalCost += price * quantity;
+    updateTotal(totalCost);
+}
+
 
 //Remove Item from Shopping Cart
 function removeItem(event){
