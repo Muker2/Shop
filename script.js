@@ -144,9 +144,6 @@ function addItem(event){
         itemex.quantity += quantity;
         itemex.price += price * quantity;
 
-        console.log("Cart List:", cartList);
-        console.log("Item Exists at Index:", itemExists);
-
         const rowex = document.querySelector("#cartList li");
         if(rowex){
         rowex.querySelector(".productPrice").innerText = itemex.price;

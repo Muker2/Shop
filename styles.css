@@ -92,6 +92,10 @@ nav ul{
     gap: 10px;
 }
 
+.grid-item{
+    width: 20%;
+}
+
 
 #cart-bar{
     width: 30%;
@@ -166,6 +170,15 @@ li{
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.buttonField{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    height: 10%;
+    width: 70%;
 }
 
 .footer{
