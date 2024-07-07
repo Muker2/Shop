@@ -105,11 +105,11 @@ function displayProducts() {
                 productButtonField.append(decreaseButton);
                 productButtonField.append(productQty);
                 productButtonField.append(increaseButton);
+                productButtonField.append(productButton);
 
                 productCard.append(productName);
                 productCard.append(productPrice);
                 productCard.append(productButtonField);
-                productCard.append(productButton);
 
                 grid.append(productCard)
         });
