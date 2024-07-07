@@ -108,8 +108,8 @@ function displayProducts() {
 
                 productCard.append(productName);
                 productCard.append(productPrice);
-                productCard.append(productButton);
                 productCard.append(productButtonField);
+                productCard.append(productButton);
 
                 grid.append(productCard)
         });
