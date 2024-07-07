@@ -178,7 +178,14 @@ li{
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    height: 10%;
+}
+
+#addCart{
+    flex-grow: 0.5;
+    background-color: #0598ce;
+    color: white;
+    border-radius: 20px;
+    height: 30px;
 }
 
 .footer{

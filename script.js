@@ -75,6 +75,7 @@ function displayProducts() {
                 const productButton = document.createElement("button");
                 productButton.innerText = "Add to Basket";
                 productButton.addEventListener("click", addItem);
+                productButton.setAttribute("id", "addCart");
 
                 const increaseButton = document.createElement("button");
                 increaseButton.innerText = "+";
@@ -127,15 +128,15 @@ function toNumber(string){
 
 
 
-function addItem(event){
+/*function addItem(event){
     const row = document.createElement("li");
     const productRow = document.createElement("div");
     const removeBtn = document.createElement("button");
     removeBtn.addEventListener("click", removeItem);
 
-    const name = event.target.parentElement.querySelector(".productName").innerText;
-    const price = event.target.parentElement.querySelector(".productPrice").innerText;
-    const quantity = event.target.parentElement.querySelector(".productQty").innerText;
+    const name = event.target.parentElement.parentElement.querySelector(".productName").innerText;
+    const price = parseFloat(event.target.parentElement.parentElement.querySelector(".productPrice").innerText);
+    const quantity = parseInt(event.target.parentElement.querySelector(".productQty").innerText, 10);
 
     const itemExists = cartList.findIndex(item => item.title == name);
 
@@ -145,6 +146,7 @@ function addItem(event){
         itemex.price += price * quantity;
 
         const rowex = document.querySelector("#cartList li");
+        console.log(rowex);
         if(rowex){
         rowex.querySelector(".productPrice").innerText = itemex.price;
         rowex.querySelector(".productQty").innerText = itemex.quantity;
@@ -188,7 +190,7 @@ function addItem(event){
 
 
 }
-}
+}*/
 
 function addItem(event) {
     const name = event.target.parentElement.parentElement.querySelector(".productName").innerText;
