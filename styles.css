@@ -180,6 +180,12 @@ li{
     margin: auto;
 }
 
+.counterBtn{
+    background-color: transparent;
+    border: none;
+    color: #0598ce;
+}
+
 #addCart{
     flex-grow: 0.5;
     background-color: #0598ce;
