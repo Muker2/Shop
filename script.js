@@ -209,7 +209,10 @@ function addItem(event) {
 
 
 function updateCart(){
-    cartList.forEach(item => {
+
+    cart.innerHTML = "";
+    totalCost = 0;
+    for (var i = 0; i < cartList.length; i++){
         const row = document.createElement("li");
         const productRow = document.createElement("div");
         const removeBtn = document.createElement("button");
@@ -217,15 +220,15 @@ function updateCart(){
         removeBtn.addEventListener("click", removeItem);
 
         const rowName = document.createElement("p");
-        rowName.innerText = item.title;
+        rowName.innerText = cartList[i].title;
 
         const rowPrice = document.createElement("p");
         rowPrice.setAttribute("id", "productPrice");
-        rowPrice.innerText = item.price.toFixed(2);
+        rowPrice.innerText = cartList[i].price.toFixed(2);
 
         const rowQty = document.createElement("p");
         rowQty.setAttribute("id", "productQty");
-        rowQty.innerText = item.quantity;
+        rowQty.innerText = cartList[i].quantity;
 
         productRow.append(rowName);
         productRow.append(rowPrice);
@@ -235,9 +238,10 @@ function updateCart(){
         row.append(productRow);
         cart.append(row);
 
-        totalCost += item.price * item.quantity;
-        console.log(item);
-    })
+        totalCost += cartList[i].price * cartList[i].quantity;
+        console.log(totalCost);
+        cartTotal.innerText = "Your total: " + totalCost;
+    }
 }
 
 
