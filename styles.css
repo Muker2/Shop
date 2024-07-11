@@ -186,6 +186,10 @@ li{
     color: #0598ce;
 }
 
+.productQty{
+    width: min-content;
+}
+
 #addCart{
     flex-grow: 0.5;
     background-color: #0598ce;

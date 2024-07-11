@@ -197,21 +197,6 @@ function addItem(event) {
     const price = parseFloat(event.target.parentElement.parentElement.querySelector(".productPrice").innerText);
     const quantity = parseInt(event.target.parentElement.querySelector(".productQty").innerText, 10);
 
-    const itemExists = cartList.findIndex(item => item.title === name);
-
-    if (itemExists > -1) {
-        const itemex = cartList[itemExists];
-        itemex.quantity += quantity;
-        itemex.price += price * quantity;
-
-        const rows = cart.querySelectorAll("li");
-        rows.forEach(row => {
-            if (row.querySelector("p").innerText === name) {
-                row.querySelector("#productPrice").innerText = itemex.price.toFixed(2);
-                row.querySelector("#productQty").innerText = itemex.quantity;
-            }
-        });
-    } else {
         const item = {
             title: name,
             quantity: quantity,
@@ -219,7 +204,12 @@ function addItem(event) {
         };
 
         cartList.push(item);
+        updateCart();
+    }
 
+
+function updateCart(){
+    cartList.forEach(item => {
         const row = document.createElement("li");
         const productRow = document.createElement("div");
         const removeBtn = document.createElement("button");
@@ -227,7 +217,7 @@ function addItem(event) {
         removeBtn.addEventListener("click", removeItem);
 
         const rowName = document.createElement("p");
-        rowName.innerText = name;
+        rowName.innerText = item.title;
 
         const rowPrice = document.createElement("p");
         rowPrice.setAttribute("id", "productPrice");
@@ -235,7 +225,7 @@ function addItem(event) {
 
         const rowQty = document.createElement("p");
         rowQty.setAttribute("id", "productQty");
-        rowQty.innerText = quantity;
+        rowQty.innerText = item.quantity;
 
         productRow.append(rowName);
         productRow.append(rowPrice);
@@ -244,10 +234,10 @@ function addItem(event) {
 
         row.append(productRow);
         cart.append(row);
-    }
 
-    totalCost += price * quantity;
-    updateTotal(totalCost);
+        totalCost += item.price * item.quantity;
+        console.log(item);
+    })
 }
 
 
