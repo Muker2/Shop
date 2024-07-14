@@ -3,6 +3,7 @@ const grid = document.querySelector("#grid");
 const cart = document.querySelector("#cartList");
 const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
+const destxt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla orci sit amet placerat finibus."
 let shoppingItems = [];
 let cartList = [];
 let qty = 1;
@@ -65,8 +66,12 @@ function displayProducts() {
                 productName.innerText = product.title;
                 productName.classList.add("productName");
 
+                const productDesc = document.createElement("p");
+                productDesc.innerText = destxt;
+                productDesc.classList.add("productDescription");
+
                 const productPrice = document.createElement("p");
-                productPrice.innerText = product.price;
+                productPrice.innerText = product.price + "€";
                 productPrice.classList.add("productPrice");
 
                 const productButtonField = document.createElement("div");
@@ -109,6 +114,7 @@ function displayProducts() {
                 productButtonField.append(productButton);
 
                 productCard.append(productName);
+                productCard.append(productDesc);
                 productCard.append(productPrice);
                 productCard.append(productButtonField);
 

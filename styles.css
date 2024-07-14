@@ -173,6 +173,19 @@ li{
     align-items: center;
 }
 
+.productName{
+    font: bold 1.2rem  Roboto, sans-serif;
+}
+
+.productDescription{
+    font-size: 0.8rem;
+}
+
+.productPrice{
+    text-align: center;
+    font: bold 1rem  Roboto, sans-serif;
+}
+
 .buttonField{
     display: flex;
     justify-content: space-between;
