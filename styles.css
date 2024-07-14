@@ -174,7 +174,11 @@ li{
 }
 
 .productName{
+    width: 250px;
     font: bold 1.2rem  Roboto, sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .productDescription{

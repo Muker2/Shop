@@ -3,6 +3,7 @@ const grid = document.querySelector("#grid");
 const cart = document.querySelector("#cartList");
 const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
+const searchBar = document.querySelector(".search-bar");
 const destxt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla orci sit amet placerat finibus."
 let shoppingItems = [];
 let cartList = [];
@@ -65,10 +66,12 @@ function displayProducts() {
             const productName = document.createElement("p");
             productName.innerText = product.title;
             productName.classList.add("productName");
+            productName.dataset.title = product.title;
 
             const productDesc = document.createElement("p");
             productDesc.innerText = destxt;
             productDesc.classList.add("productDescription");
+            productDesc.dataset.title = destxt;
 
             const productPrice = document.createElement("p");
             productPrice.innerText = product.price + "€";
@@ -125,17 +128,25 @@ function displayProducts() {
 
 cartRemove.addEventListener("click", clearCart);
 
-/*Convert string to Floats with two decimals for innerHTML in the addItem function
-function toNumber(string){
-    return Math.round(string * 100) / 100;
-    const num = Math.toFixed(2);
-    return num;
-}*/
+searchBar.addEventListener("input", e => {
+    const value = e.target.value;
+    if (value && value.trim().length > 0){
+        value = value.trim().toLowerCase()
+    } else {
+    }
+
+})
+
+
 
 function addItem(event) {
     const name = event.target.parentElement.parentElement.querySelector(".productName").innerText;
     const price = parseFloat(event.target.parentElement.parentElement.querySelector(".productPrice").innerText);
     const quantity = parseInt(event.target.parentElement.querySelector(".productQty").innerText, 10);
+
+    //Index if item already exists in the cart
+    const itemExists = cartList.findIndex(item => item.title == name);
+
 
     //Create object for Item
     const item = {
@@ -144,8 +155,7 @@ function addItem(event) {
         price: price * quantity
     };
 
-    const itemExists = cartList.findIndex(item => item.title == name);
-
+    //Check if Item exists and increase price and quantity if it does
     if(itemExists >= 0){
         const currentItem = cartList[itemExists];
         currentItem.quantity += quantity;
@@ -205,9 +215,6 @@ function removeItem(event) {
     updateTotal(totalCost);
     item.remove();
 }
-
-
-
 
 displayProducts();
 
