@@ -58,7 +58,7 @@ nav ul{
     color: black
 }
 
-.profile-btn{
+#acc-btn{
     height: 30px;
     width: 100px;
 }
@@ -94,11 +94,12 @@ nav ul{
 }
 
 .grid-item{
-    width: 30%;
+    width: 20%;
 }
 
 
 #cart-bar{
+    display: none;
     width: 30%;
     height: 100%;
     background-color: white;

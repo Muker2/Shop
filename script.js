@@ -1,6 +1,8 @@
 const shoppingList = document.querySelector(".cart");
 const grid = document.querySelector("#grid");
 const cart = document.querySelector("#cartList");
+const cartBtn = document.querySelector("#acc-btn");
+
 const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
 const searchBar = document.querySelector(".search-bar");
@@ -64,6 +66,17 @@ searchBar.addEventListener("input", e => {
     })
     console.log(shoppingItems);
 })
+
+cartBtn.addEventListener("click", e =>{
+const cartBar = document.querySelector("#cart-bar");
+
+    if (cartBar.style.display === "none" ) {
+        cartBar.style.display = "block";
+    }else {
+        cartBar.style.display = "none";
+    }
+    }
+)
 
 //Display product list from API
 function displayProducts() {
@@ -130,8 +143,8 @@ function displayProducts() {
             productButtonField.append(increaseButton);
             productButtonField.append(productButton);
 
-            productCard.append(productName);
             productCard.append(productImg);
+            productCard.append(productName);
             productCard.append(productDesc);
             productCard.append(productPrice);
             productCard.append(productButtonField);
