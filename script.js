@@ -5,6 +5,7 @@ const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
 const searchBar = document.querySelector(".search-bar");
 const destxt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla orci sit amet placerat finibus."
+const img = "images/Laptop.jpg";
 let shoppingItems = [];
 let cartList = [];
 let qty = 1;
@@ -43,7 +44,7 @@ function updateTotal(price) {
     if (price <= 0) {
         price = 0;
     }
-    document.querySelector("#totalPrice").textContent = "Your Total:" + " " + price.toFixed(2) + "€";
+    document.querySelector("#totalPrice").textContent = "Your Total:" + " " + Math.round(price * 100) / 100 + "€";
 }
 
 function clearCart() {
@@ -68,6 +69,11 @@ searchBar.addEventListener("input", e => {
 function displayProducts() {
     fetchData().then(data => {
         shoppingItems = data.map(product => {
+            const productImg = document.createElement("img");
+            productImg.classList.add("product-img");
+            productImg.src = img;
+            
+
             const productCard = document.createElement("div");
             productCard.classList.add("grid-item");
 
@@ -125,6 +131,7 @@ function displayProducts() {
             productButtonField.append(productButton);
 
             productCard.append(productName);
+            productCard.append(productImg);
             productCard.append(productDesc);
             productCard.append(productPrice);
             productCard.append(productButtonField);

@@ -237,4 +237,8 @@ li{
     display: none;
 }
 
+.product-img {
+    max-width: 100%;
+}
+
 
