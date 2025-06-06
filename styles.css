@@ -36,12 +36,6 @@ header h1{
     width: 80%;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
 
 nav ul{
     display: flex;
@@ -87,14 +81,11 @@ nav ul{
 #grid{
     display: flex;
     flex-wrap: wrap;
-    flex-grow: 1;
-    align-content: flex-end;
-    width: 60%;
-    gap: 10px;
 }
 
 .grid-item{
-    width: 20%;
+    margin: 5px;
+    flex: 1 0 21%;
 }
 
 
@@ -107,6 +98,8 @@ nav ul{
     background-color: white;
     color: black;
     z-index: 100;
+    animation-name: slideIn;
+    animation-duration: 1s;
 }
 
 #cartTotal{
@@ -144,6 +137,14 @@ nav ul{
     display: flex;
     justify-content: space-around;
     width: 100%;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(500px);
+    } t0 {
+        text-replace: translateX(0px);
+    }
 }
 
 .prod-img{
