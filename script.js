@@ -2,6 +2,8 @@ const shoppingList = document.querySelector(".cart");
 const grid = document.querySelector("#grid");
 const cart = document.querySelector("#cartList");
 const cartBtn = document.querySelector("#acc-btn");
+const closeBtn = document.querySelector("#closeBtn");
+const cartBar = document.querySelector("#cart-bar");
 
 const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
@@ -58,6 +60,10 @@ function clearCart() {
     updateTotal(totalCost);
 }
 
+closeBtn.addEventListener("click", e => {
+    cartBar.style.display = "none";
+})
+
 searchBar.addEventListener("input", e => {
     const value = e.target.value.toLowerCase();
     shoppingItems.forEach(item => {
@@ -68,7 +74,7 @@ searchBar.addEventListener("input", e => {
 })
 
 cartBtn.addEventListener("click", e =>{
-const cartBar = document.querySelector("#cart-bar");
+
 
     if (cartBar.style.display === "none" ) {
         cartBar.style.display = "block";
