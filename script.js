@@ -1,16 +1,17 @@
 const shoppingList = document.querySelector(".cart");
 const grid = document.querySelector("#grid");
+
 const cart = document.querySelector("#cartList");
 const cartBtn = document.querySelector("#acc-btn");
 const closeBtn = document.querySelector("#closeBtn");
 const cartBar = document.querySelector("#cart-bar");
-
 const cartTotal = document.querySelector("#totalPrice");
 const cartRemove = document.querySelector("#cartBtnList");
+
 const searchBar = document.querySelector(".search-bar");
 const destxt = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla orci sit amet placerat finibus."
 const img = "images/Laptop.jpg";
-let shoppingItems = [];
+let cartItems = [];
 let cartList = [];
 let qty = 1;
 let totalCost = 0;
@@ -66,16 +67,14 @@ closeBtn.addEventListener("click", e => {
 
 searchBar.addEventListener("input", e => {
     const value = e.target.value.toLowerCase();
-    shoppingItems.forEach(item => {
+    cartItems.forEach(item => {
         const isVisible = item.name.toLowerCase().includes(value);
         item.element.classList.toggle("hide", !isVisible);
     })
-    console.log(shoppingItems);
+    console.log(cartItems);
 })
 
 cartBtn.addEventListener("click", e =>{
-
-
     if (cartBar.style.display === "none" ) {
         cartBar.style.display = "block";
     }else {
@@ -87,7 +86,7 @@ cartBtn.addEventListener("click", e =>{
 //Display product list from API
 function displayProducts() {
     fetchData().then(data => {
-        shoppingItems = data.map(product => {
+        cartItems = data.map(product => {
             const productImg = document.createElement("img");
             productImg.classList.add("product-img");
             productImg.src = img;
@@ -246,4 +245,3 @@ function removeItem(event) {
 }
 
 displayProducts();
-
