@@ -68,6 +68,12 @@ nav ul{
 
 #sidebar-filter{
     list-style-type: none;
+    padding-left: 0px;
+}
+
+#sidebar-filter button{
+   width: 100%; 
+   text-align: left;
 }
 
 #grid{

@@ -35,7 +35,7 @@ fetch('https://dummyjson.com/auth/refresh', {
 
 //Fetch 10 products from API
 function fetchData() {
-    const API = "https://dummyjson.com/products?skip=0&limit=10";
+    const API = "https://dummyjson.com/products?skip=0&limit=20";
     return fetch(API).then(response => {
         if (!response.ok) {
             throw new Error("Could not load data");
@@ -91,12 +91,12 @@ function createCategories() {
             const categoryField = document.createElement("li");
             categoryField.classList.add("categoryField");
             const categoryButton = document.createElement("button");
-            const categoryName = item.title;
-
-
-            categoryButton.innerText = categoryName;
+            const categoryName = item.category;
+                categoryButton.innerText = categoryName;
             categoryField.append(categoryButton);
             categories.append(categoryField);
+            
+        
         })
     })
 }
