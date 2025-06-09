@@ -33,7 +33,7 @@ fetch('https://dummyjson.com/auth/refresh', {
 
 //Fetch 10 products from API
 function fetchData() {
-    const API = "https://dummyjson.com/products?skip=0&limit=12";
+    const API = "https://dummyjson.com/products?skip=0&limit=10";
     return fetch(API).then(response => {
         if (!response.ok) {
             throw new Error("Could not load data");
