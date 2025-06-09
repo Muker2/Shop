@@ -1,5 +1,7 @@
 const shoppingList = document.querySelector(".cart");
 const grid = document.querySelector("#grid");
+const categories = document.querySelector("#sidebar-filter");
+let categoryList = [];
 
 const cart = document.querySelector("#cartList");
 const cartBtn = document.querySelector("#acc-btn");
@@ -83,6 +85,22 @@ cartBtn.addEventListener("click", e =>{
     }
 )
 
+function createCategories() {
+    fetchData().then(data => {
+        categoryList = data.map(item => {
+            const categoryField = document.createElement("li");
+            categoryField.classList.add("categoryField");
+            const categoryButton = document.createElement("button");
+            const categoryName = item.title;
+
+
+            categoryButton.innerText = categoryName;
+            categoryField.append(categoryButton);
+            categories.append(categoryField);
+        })
+    })
+}
+
 //Display product list from API
 function displayProducts() {
     fetchData().then(data => {
@@ -113,7 +131,7 @@ function displayProducts() {
             productButtonField.classList.add("buttonField");
 
             const productButton = document.createElement("button");
-            productButton.innerText = "Add to Basket";
+            productButton.innerText = "Add to Cart";
             productButton.addEventListener("click", addItem);
             productButton.setAttribute("id", "addCart");
 
@@ -244,4 +262,5 @@ function removeItem(event) {
     item.remove();
 }
 
+createCategories();
 displayProducts();
