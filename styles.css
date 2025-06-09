@@ -23,19 +23,16 @@ header{
     height: 100px;
     color: black;
     box-shadow: 0px 0px 6px #888888;
+    position: sticky;
+    top: 0;
+    background-color: #f0f0f0;
 
 }
 
-header h1{
-    width: 100%;
-    margin: auto;
-}
-
-.header-input{
+nav {
     margin: auto;
     width: 80%;
 }
-
 
 nav ul{
     display: flex;
@@ -44,13 +41,6 @@ nav ul{
     list-style-type: none;
 }
 
-#banner{
-    height: 100px;
-    width: 80%;
-    margin: auto;
-    background-color: orange;
-    color: black
-}
 
 #acc-btn{
     height: 30px;
