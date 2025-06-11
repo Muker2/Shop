@@ -90,9 +90,11 @@ function createCategories() {
         categoryList = data.map(item => {
             const categoryField = document.createElement("li");
             categoryField.classList.add("categoryField");
-            const categoryButton = document.createElement("button");
-            const categoryName = item.category;
-                categoryButton.innerText = categoryName;
+            const categoryButton = document.createElement("a");
+            const categoryNameLower = item.category;
+            const categoryName = categoryNameLower.charAt(0).toUpperCase() + categoryNameLower.slice(1);
+
+            categoryButton.innerText = categoryName;
             categoryField.append(categoryButton);
             categories.append(categoryField);
             

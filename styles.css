@@ -61,7 +61,6 @@ nav ul{
 }
 
 #sidebar{
-    background-color: red;
     height: 100%;
     width: 100%;
 }
@@ -69,11 +68,34 @@ nav ul{
 #sidebar-filter{
     list-style-type: none;
     padding-left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    gap: 0;
+    border: 1px solid gray;
+
 }
 
 #sidebar-filter button{
    width: 100%; 
    text-align: left;
+}
+
+.categoryField {
+    background-color: #f0f0f0;
+    color: black;
+    transition: 0.3s
+}
+
+.categoryField:hover {
+    background-color: gray;
+}
+
+.categoryField a {
+    font-size: 1rem;
+    margin-left: 5px;
+        
+
 }
 
 #grid{
