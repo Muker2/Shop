@@ -21,11 +21,11 @@ header{
     display: flex;
     flex-wrap: wrap;
     height: 100px;
-    color: black;
+    color: white;
     box-shadow: 0px 0px 6px #888888;
     position: sticky;
     top: 0;
-    background-color: #f0f0f0;
+    background-color: #0598ce;
 
 }
 
@@ -58,6 +58,7 @@ nav ul{
     display: flex;
     margin-top: 10px;
     width: 80%;
+    gap: 10px;
 }
 
 #sidebar{
@@ -73,6 +74,7 @@ nav ul{
     align-content: flex-start;
     gap: 0;
     border: 1px solid gray;
+    margin: 0;  
 
 }
 
@@ -141,7 +143,7 @@ nav ul{
     height: 50px;
     background-color: white;
     color: #0598ce;
-    border: 1px solid #0598ce;
+    border: 1px solid chartreuse;
     border-radius: 5px;
 }
 
