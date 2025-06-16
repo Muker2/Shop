@@ -218,9 +218,6 @@ function addItem(event) {
     }
 }
 
-function filterCategory() {
-
-}
 
 
 function updateCart() {
@@ -228,28 +225,41 @@ function updateCart() {
     totalCost = 0;
     for (var i = 0; i < cartList.length; i++) {
         const row = document.createElement("li");
-        const productRow = document.createElement("div");
+        row.id = "cartRow";
         const removeBtn = document.createElement("button");
         removeBtn.innerText = "Remove";
         removeBtn.addEventListener("click", removeItem);
 
         const rowName = document.createElement("p");
+        rowName.classList.add("cartInfo");
         rowName.innerText = cartList[i].title;
 
         const rowPrice = document.createElement("p");
+        rowPrice.classList.add("cartInfo");
         rowPrice.setAttribute("id", "productPrice");
         rowPrice.innerText = cartList[i].price.toFixed(2);
 
         const rowQty = document.createElement("p");
+        rowQty.classList.add("cartInfo");
         rowQty.setAttribute("id", "productQty");
         rowQty.innerText = cartList[i].quantity;
 
-        productRow.append(rowName);
-        productRow.append(rowPrice);
-        productRow.append(rowQty);
-        productRow.append(removeBtn);
+        const rowBtnInc = document.createElement("button");
+        rowBtnInc.classList.add("cartInfo");
+        rowBtnInc.innerText = "+";
+        rowBtnInc.addEventListener("click", e => )
 
-        row.append(productRow);
+        const rowBtnDec = document.createElement("button");
+        rowBtnDec.classList.add("cartInfo");
+        rowBtnDec.innerText = "-";
+
+        row.append(rowName);
+        row.append(rowPrice);
+        row.append(rowBtnInc);
+        row.append(rowQty);
+        row.append(rowBtnDec);
+        row.append(removeBtn);
+
         cart.append(row);
 
         totalCost += cartList[i].price * cartList[i].quantity;
