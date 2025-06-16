@@ -76,7 +76,7 @@ searchBar.addEventListener("input", e => {
     console.log(cartItems);
 })
 
-cartBtn.addEventListener("click", e =>{
+cartBtn.addEventListener("click", e => {
     if (cartBar.style.display === "none" ) {
         cartBar.style.display = "block";
     }else {
@@ -90,18 +90,23 @@ function createCategories() {
         categoryList = data.map(item => {
             const categoryField = document.createElement("li");
             categoryField.classList.add("categoryField");
-            const categoryButton = document.createElement("a");
+            categoryField.addEventListener("click", e => {
+                console.log(e.target.innerText);
+            })
+            
             const categoryNameLower = item.category;
             const categoryName = categoryNameLower.charAt(0).toUpperCase() + categoryNameLower.slice(1);
 
-            categoryButton.innerText = categoryName;
-            categoryField.append(categoryButton);
+            categoryField.innerText = categoryName;
             categories.append(categoryField);
+
             
         
         })
     })
 }
+
+
 
 //Display product list from API
 function displayProducts() {
@@ -181,9 +186,6 @@ function displayProducts() {
     });
 }
 
-cartRemove.addEventListener("click", clearCart);
-
-
 
 
 
@@ -214,6 +216,10 @@ function addItem(event) {
     cartList.push(item);
     updateCart();
     }
+}
+
+function filterCategory() {
+
 }
 
 
